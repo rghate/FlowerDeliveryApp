@@ -19,7 +19,8 @@ class ShopController: BaseControlller {
     private var products = [ProductViewModel]()
     private var footerView: CustomFooter?
 
-    private var currentProductIndex: Int?
+    private var currentProductIndex: Int = 0
+    
     
     // MARK: Initializers
     
@@ -53,9 +54,8 @@ class ShopController: BaseControlller {
     
     private func showProductDetails() {
         let vc = ProductDetailsController()
-        if let currentIndex = currentProductIndex {
-            vc.productTitle = products[currentIndex].attributes.name
-        }
+        vc.productTitle = products[currentProductIndex].attributes.name
+        
         self.navigationController?.present(vc, animated: true, completion: nil)
     }
     
@@ -168,7 +168,9 @@ extension ShopController: UICollectionViewDelegateFlowLayout, UICollectionViewDa
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         for cell in collectionView.visibleCells {
             let indexPath = collectionView.indexPath(for: cell)
-            currentProductIndex = indexPath?.row
+            if let indexPath = indexPath {
+                currentProductIndex = indexPath.row
+            }
         }
     }
 }
