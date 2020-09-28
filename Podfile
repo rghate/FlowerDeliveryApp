@@ -6,8 +6,6 @@ source 'https://github.com/CocoaPods/Specs.git'
 
   pod 'SDWebImage', '~> 5.0'
   pod 'Cosmos', '~> 23.0'
-#  pod 'SDWebImage/WebP'
-#  pod 'iCarousel'
   
   target 'FlowerDeliveryBuddyTests' do
     inherit! :search_paths

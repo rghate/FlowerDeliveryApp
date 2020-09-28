@@ -19,6 +19,7 @@ class ShopController: BaseControlller {
     private var products = [ProductViewModel]()
     private var footerView: CustomFooter?
 
+    private var currentProductIndex: Int?
     
     // MARK: Initializers
     
@@ -51,7 +52,11 @@ class ShopController: BaseControlller {
     }
     
     private func showProductDetails() {
-        self.navigationController?.present(ProductDetailsController(), animated: true, completion: nil)
+        let vc = ProductDetailsController()
+        if let currentIndex = currentProductIndex {
+            vc.productTitle = products[currentIndex].attributes.name
+        }
+        self.navigationController?.present(vc, animated: true, completion: nil)
     }
     
     private func downloadProductsData() {
@@ -114,7 +119,6 @@ extension ShopController: UICollectionViewDelegateFlowLayout, UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //        return products.count
         products.count
     }
     
@@ -161,6 +165,12 @@ extension ShopController: UICollectionViewDelegateFlowLayout, UICollectionViewDa
         return cell
     }
     
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        for cell in collectionView.visibleCells {
+            let indexPath = collectionView.indexPath(for: cell)
+            currentProductIndex = indexPath?.row
+        }
+    }
 }
 
 
