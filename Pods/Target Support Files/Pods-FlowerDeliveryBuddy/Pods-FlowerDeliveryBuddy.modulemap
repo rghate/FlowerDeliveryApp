@@ -1,0 +1,6 @@
+framework module Pods_FlowerDeliveryBuddy {
+  umbrella header "Pods-FlowerDeliveryBuddy-umbrella.h"
+
+  export *
+  module * { export * }
+}
