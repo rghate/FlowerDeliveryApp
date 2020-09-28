@@ -22,7 +22,7 @@ Features:
 Please Note:
 
 1. Created a local test json file (./Resources/TestFile.json). To read data from test file, set ‘readTestData’ property to true in APIService.swift.
-
+2. A demo video of added in 'Demo Video' folder.
     
     Improvements:
     
